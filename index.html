@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concrete Quantity Reference: Slab Volumes, Bags, Columns, Density</title>
+<meta name="description" content="Sortable lookup of concrete volume in cubic yards and cubic metres for common slab sizes, bag counts by yield, round column volumes, material densities and slab squaring diagonals.">
+<style>
+:root{--bg:#eef0ec;--ink:#17211c;--mute:#55625b;--line:#c7cec6;--green:#1f6b4a;--hl:#fff1b8;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:1100px;margin:0 auto;padding:28px 16px 56px}
+h1{font:700 2.1rem/1.1 "Franklin Gothic Medium","Arial Narrow",system-ui,sans-serif;margin:0 0 8px;letter-spacing:-.01em}
+h2{font:700 1.3rem/1.2 "Franklin Gothic Medium","Arial Narrow",system-ui,sans-serif;margin:40px 0 4px}
+p{margin:0 0 10px;max-width:70ch}.note{color:var(--mute);font-size:.9rem}
+a{color:var(--green)}
+.formulas{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0;border:2px solid var(--ink);background:var(--card);margin:18px 0 0}
+.formulas div{padding:10px 14px;border-right:1px solid var(--line)}.formulas b{display:block;font-size:.85rem;color:var(--mute);font-weight:600}
+.formulas span{font-variant-numeric:tabular-nums;font-weight:600}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 10px}
+input,select{font:inherit;padding:8px 10px;border:1.5px solid var(--ink);background:var(--card);border-radius:3px;min-width:160px}
+input:focus-visible,select:focus-visible,th button:focus-visible{outline:3px solid var(--green);outline-offset:1px}
+.wrap{overflow-x:auto;border:1px solid var(--line);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:.93rem}
+th,td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child,td:last-child:not([data-v]){text-align:left}
+thead th{background:var(--ink);color:#fff;font-weight:600;position:sticky;top:0}
+th button{all:unset;cursor:pointer;display:block;width:100%}
+th[aria-sort=ascending] button::after{content:" ▲"}th[aria-sort=descending] button::after{content:" ▼"}
+tbody tr:hover{background:var(--hl)}
+td.hl,th.hl{box-shadow:inset 0 -3px 0 var(--green)}
+.count{margin:6px 0 0;font-size:.85rem;color:var(--mute)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
+@media(max-width:600px){h1{font-size:1.7rem}}
+</style>
+</head>
+<body>
+<main>
+<h1>Concrete Quantity Reference</h1>
+<p>Lookup tables for slab volume, bag counts, round columns, material weight and slab squaring. Click any column header to sort. Data compiled from and expanded on this <a href="https://yardtoolshub.com/concrete-calculator/">concrete calculator guide for slabs, bags and cubic yards</a>.</p>
+
+<div class="formulas">
+<div><b>Slab volume (ft × ft × in)</b><span>ft³ = L × W × T ÷ 12</span></div>
+<div><b>Cubic yards</b><span>yd³ = ft³ ÷ 27</span></div>
+<div><b>Metric slab (m × m × mm)</b><span>m³ = L × W × T ÷ 1,000</span></div>
+<div><b>Bags</b><span>bags = volume ÷ bag yield, round up</span></div>
+<div><b>Order allowance</b><span>yd³ × 1.10 (10% example)</span></div>
+</div>
+
+<h2 id="slab">Slab volume and bag lookup</h2>
+<p class="note">20 common slab sizes, base volume before allowance. Bag counts use illustrative yields of 0.60 ft³ (80 lb), 0.45 ft³ (60 lb) and 0.30 ft³ (40 lb) and are rounded up. Confirm yield on your product label, and thickness against your plans.</p>
+<div class="tools">
+<input id="q" type="search" placeholder="Filter: size, use, thickness" aria-label="Filter slab table">
+<select id="use" aria-label="Filter by use"><option value="">All uses</option><option>Driveway</option><option>Garage</option><option>Pad</option><option>Patio</option><option>Shed</option><option>Walkway</option></select>
+</div>
+<div class="wrap"><table id="slabs" class="sortable"><thead><tr>
+<th><button>Use</button></th><th><button>Size (ft)</button></th><th><button>Thick (in)</button></th><th><button>Area (ft²)</button></th><th><button>ft³</button></th><th class="hl"><button>yd³</button></th><th><button>yd³ +10%</button></th><th><button>m³</button></th><th><button>80 lb bags</button></th><th><button>60 lb bags</button></th><th><button>40 lb bags</button></th>
+</tr></thead><tbody>
+<tr data-use="Pad"><td>Pad</td><td data-v="16004">4 × 4</td><td data-v="4">4</td><td data-v="16">16</td><td data-v="5.33">5.33</td><td data-v="0.198">0.20</td><td data-v="0.217">0.22</td><td data-v="0.151">0.15</td><td data-v="9">9</td><td data-v="12">12</td><td data-v="18">18</td></tr>
+<tr data-use="Pad"><td>Pad</td><td data-v="36006">6 × 6</td><td data-v="4">4</td><td data-v="36">36</td><td data-v="12.0">12.00</td><td data-v="0.444">0.44</td><td data-v="0.489">0.49</td><td data-v="0.34">0.34</td><td data-v="20">20</td><td data-v="27">27</td><td data-v="40">40</td></tr>
+<tr data-use="Walkway"><td>Walkway</td><td data-v="60003">3 × 20</td><td data-v="4">4</td><td data-v="60">60</td><td data-v="20.0">20.00</td><td data-v="0.741">0.74</td><td data-v="0.815">0.81</td><td data-v="0.566">0.57</td><td data-v="34">34</td><td data-v="45">45</td><td data-v="67">67</td></tr>
+<tr data-use="Walkway"><td>Walkway</td><td data-v="120004">4 × 30</td><td data-v="4">4</td><td data-v="120">120</td><td data-v="40.0">40.00</td><td data-v="1.481">1.48</td><td data-v="1.63">1.63</td><td data-v="1.133">1.13</td><td data-v="67">67</td><td data-v="89">89</td><td data-v="134">134</td></tr>
+<tr data-use="Walkway"><td>Walkway</td><td data-v="150003">3 × 50</td><td data-v="4">4</td><td data-v="150">150</td><td data-v="50.0">50.00</td><td data-v="1.852">1.85</td><td data-v="2.037">2.04</td><td data-v="1.416">1.42</td><td data-v="84">84</td><td data-v="112">112</td><td data-v="167">167</td></tr>
+<tr data-use="Shed"><td>Shed</td><td data-v="64008">8 × 8</td><td data-v="4">4</td><td data-v="64">64</td><td data-v="21.33">21.33</td><td data-v="0.79">0.79</td><td data-v="0.869">0.87</td><td data-v="0.604">0.60</td><td data-v="36">36</td><td data-v="48">48</td><td data-v="72">72</td></tr>
+<tr data-use="Shed"><td>Shed</td><td data-v="120010">10 × 12</td><td data-v="4">4</td><td data-v="120">120</td><td data-v="40.0">40.00</td><td data-v="1.481">1.48</td><td data-v="1.63">1.63</td><td data-v="1.133">1.13</td><td data-v="67">67</td><td data-v="89">89</td><td data-v="134">134</td></tr>
+<tr data-use="Patio"><td>Patio</td><td data-v="100010">10 × 10</td><td data-v="4">4</td><td data-v="100">100</td><td data-v="33.33">33.33</td><td data-v="1.235">1.23</td><td data-v="1.358">1.36</td><td data-v="0.944">0.94</td><td data-v="56">56</td><td data-v="75">75</td><td data-v="112">112</td></tr>
+<tr data-use="Patio"><td>Patio</td><td data-v="100010">10 × 10</td><td data-v="6">6</td><td data-v="100">100</td><td data-v="50.0">50.00</td><td data-v="1.852">1.85</td><td data-v="2.037">2.04</td><td data-v="1.416">1.42</td><td data-v="84">84</td><td data-v="112">112</td><td data-v="167">167</td></tr>
+<tr data-use="Patio"><td>Patio</td><td data-v="144012">12 × 12</td><td data-v="4">4</td><td data-v="144">144</td><td data-v="48.0">48.00</td><td data-v="1.778">1.78</td><td data-v="1.956">1.96</td><td data-v="1.359">1.36</td><td data-v="80">80</td><td data-v="107">107</td><td data-v="160">160</td></tr>
+<tr data-use="Patio"><td>Patio</td><td data-v="192012">12 × 16</td><td data-v="4">4</td><td data-v="192">192</td><td data-v="64.0">64.00</td><td data-v="2.37">2.37</td><td data-v="2.607">2.61</td><td data-v="1.812">1.81</td><td data-v="107">107</td><td data-v="143">143</td><td data-v="214">214</td></tr>
+<tr data-use="Patio"><td>Patio</td><td data-v="200020">20 × 10</td><td data-v="4">4</td><td data-v="200">200</td><td data-v="66.67">66.67</td><td data-v="2.469">2.47</td><td data-v="2.716">2.72</td><td data-v="1.888">1.89</td><td data-v="112">112</td><td data-v="149">149</td><td data-v="223">223</td></tr>
+<tr data-use="Patio"><td>Patio</td><td data-v="240020">20 × 12</td><td data-v="5">5</td><td data-v="240">240</td><td data-v="100.0">100.00</td><td data-v="3.704">3.70</td><td data-v="4.074">4.07</td><td data-v="2.832">2.83</td><td data-v="167">167</td><td data-v="223">223</td><td data-v="334">334</td></tr>
+<tr data-use="Patio"><td>Patio</td><td data-v="400020">20 × 20</td><td data-v="4">4</td><td data-v="400">400</td><td data-v="133.33">133.33</td><td data-v="4.938">4.94</td><td data-v="5.432">5.43</td><td data-v="3.776">3.78</td><td data-v="223">223</td><td data-v="297">297</td><td data-v="445">445</td></tr>
+<tr data-use="Driveway"><td>Driveway</td><td data-v="200010">10 × 20</td><td data-v="6">6</td><td data-v="200">200</td><td data-v="100.0">100.00</td><td data-v="3.704">3.70</td><td data-v="4.074">4.07</td><td data-v="2.832">2.83</td><td data-v="167">167</td><td data-v="223">223</td><td data-v="334">334</td></tr>
+<tr data-use="Driveway"><td>Driveway</td><td data-v="288012">12 × 24</td><td data-v="6">6</td><td data-v="288">288</td><td data-v="144.0">144.00</td><td data-v="5.333">5.33</td><td data-v="5.867">5.87</td><td data-v="4.078">4.08</td><td data-v="240">240</td><td data-v="320">320</td><td data-v="480">480</td></tr>
+<tr data-use="Driveway"><td>Driveway</td><td data-v="480012">12 × 40</td><td data-v="6">6</td><td data-v="480">480</td><td data-v="240.0">240.00</td><td data-v="8.889">8.89</td><td data-v="9.778">9.78</td><td data-v="6.796">6.80</td><td data-v="400">400</td><td data-v="534">534</td><td data-v="800">800</td></tr>
+<tr data-use="Driveway"><td>Driveway</td><td data-v="400020">20 × 20</td><td data-v="6">6</td><td data-v="400">400</td><td data-v="200.0">200.00</td><td data-v="7.407">7.41</td><td data-v="8.148">8.15</td><td data-v="5.664">5.66</td><td data-v="334">334</td><td data-v="445">445</td><td data-v="667">667</td></tr>
+<tr data-use="Garage"><td>Garage</td><td data-v="480020">20 × 24</td><td data-v="6">6</td><td data-v="480">480</td><td data-v="240.0">240.00</td><td data-v="8.889">8.89</td><td data-v="9.778">9.78</td><td data-v="6.796">6.80</td><td data-v="400">400</td><td data-v="534">534</td><td data-v="800">800</td></tr>
+<tr data-use="Garage"><td>Garage</td><td data-v="576024">24 × 24</td><td data-v="6">6</td><td data-v="576">576</td><td data-v="288.0">288.00</td><td data-v="10.667">10.67</td><td data-v="11.733">11.73</td><td data-v="8.156">8.16</td><td data-v="480">480</td><td data-v="640">640</td><td data-v="960">960</td></tr>
+</tbody></table></div>
+<p class="count" id="count" aria-live="polite"></p>
+
+<div class="two">
+<div>
+<h2 id="columns">Round column and Sonotube volume</h2>
+<p class="note">Cylinder: π × r² × height, inside diameter. Bags at 0.60 ft³ (80 lb), rounded up.</p>
+<div class="wrap"><table class="sortable"><thead><tr><th><button>Diameter</button></th><th><button>ft³ per ft</button></th><th><button>yd³ per ft</button></th><th><button>ft³ at 4 ft</button></th><th><button>yd³ at 4 ft</button></th><th><button>80 lb bags at 4 ft</button></th></tr></thead><tbody>
+<tr><td data-v="6">6 in</td><td data-v="0.196">0.196</td><td data-v="0.0073">0.0073</td><td data-v="0.79">0.79</td><td data-v="0.029">0.029</td><td data-v="2">2</td></tr>
+<tr><td data-v="8">8 in</td><td data-v="0.349">0.349</td><td data-v="0.0129">0.0129</td><td data-v="1.4">1.40</td><td data-v="0.052">0.052</td><td data-v="3">3</td></tr>
+<tr><td data-v="10">10 in</td><td data-v="0.545">0.545</td><td data-v="0.0202">0.0202</td><td data-v="2.18">2.18</td><td data-v="0.081">0.081</td><td data-v="4">4</td></tr>
+<tr><td data-v="12">12 in</td><td data-v="0.785">0.785</td><td data-v="0.0291">0.0291</td><td data-v="3.14">3.14</td><td data-v="0.116">0.116</td><td data-v="6">6</td></tr>
+<tr><td data-v="16">16 in</td><td data-v="1.396">1.396</td><td data-v="0.0517">0.0517</td><td data-v="5.59">5.59</td><td data-v="0.207">0.207</td><td data-v="10">10</td></tr>
+<tr><td data-v="18">18 in</td><td data-v="1.767">1.767</td><td data-v="0.0654">0.0654</td><td data-v="7.07">7.07</td><td data-v="0.262">0.262</td><td data-v="12">12</td></tr>
+<tr><td data-v="24">24 in</td><td data-v="3.142">3.142</td><td data-v="0.1164">0.1164</td><td data-v="12.57">12.57</td><td data-v="0.465">0.465</td><td data-v="21">21</td></tr>
+</tbody></table></div>
+</div>
+<div>
+<h2 id="diagonals">Slab squaring diagonals</h2>
+<p class="note">Both diagonals of a square-cornered form equal √(L² + W²). The 3-4-5 corner check works at any multiple.</p>
+<div class="wrap"><table class="sortable"><thead><tr><th><button>Size (ft)</button></th><th><button>Diagonal (ft)</button></th><th><button>Diagonal (ft + in)</button></th></tr></thead><tbody>
+<tr><td data-v="1010">10 × 10</td><td data-v="14.14">14.14</td><td data-v="14.142">14 ft 1.7 in</td></tr>
+<tr><td data-v="1212">12 × 12</td><td data-v="16.97">16.97</td><td data-v="16.971">16 ft 11.6 in</td></tr>
+<tr><td data-v="1216">12 × 16</td><td data-v="20.0">20.00</td><td data-v="20.0">20 ft 0.0 in</td></tr>
+<tr><td data-v="1020">10 × 20</td><td data-v="22.36">22.36</td><td data-v="22.361">22 ft 4.3 in</td></tr>
+<tr><td data-v="1220">12 × 20</td><td data-v="23.32">23.32</td><td data-v="23.324">23 ft 3.9 in</td></tr>
+<tr><td data-v="2020">20 × 20</td><td data-v="28.28">28.28</td><td data-v="28.284">28 ft 3.4 in</td></tr>
+<tr><td data-v="2024">20 × 24</td><td data-v="31.24">31.24</td><td data-v="31.241">31 ft 2.9 in</td></tr>
+<tr><td data-v="2424">24 × 24</td><td data-v="33.94">33.94</td><td data-v="33.941">33 ft 11.3 in</td></tr>
+</tbody></table></div>
+</div>
+</div>
+
+<h2 id="density">Material density and weight per cubic yard</h2>
+<p class="note">Indicative planning values only. Ask your supplier for current bulk density and moisture basis. Short tons are 2,000 lb.</p>
+<div class="wrap"><table class="sortable"><thead><tr><th><button>Material</button></th><th><button>kg/m³</button></th><th><button>lb/ft³</button></th><th><button>lb/yd³</button></th><th><button>Short tons/yd³</button></th><th>Typical use</th></tr></thead><tbody>
+<tr><td>Fresh / wet concrete</td><td data-v="2400">2,400</td><td data-v="149.8">149.8</td><td data-v="4045">4,045</td><td data-v="2.02">2.02</td><td>Slabs, footings, walls</td></tr>
+<tr><td>Sand (bulk)</td><td data-v="1600">1,600</td><td data-v="99.9">99.9</td><td data-v="2697">2,697</td><td data-v="1.35">1.35</td><td>Batching, bedding, levelling</td></tr>
+<tr><td>Crushed stone or gravel</td><td data-v="1650">1,650</td><td data-v="103.0">103.0</td><td data-v="2781">2,781</td><td data-v="1.39">1.39</td><td>Compacted sub-base, drainage</td></tr>
+<tr><td>Crushed concrete</td><td data-v="1550">1,550</td><td data-v="96.8">96.8</td><td data-v="2613">2,613</td><td data-v="1.31">1.31</td><td>Recycled base where approved</td></tr>
+<tr><td>Road base / crusher run</td><td data-v="1800">1,800</td><td data-v="112.4">112.4</td><td data-v="3034">3,034</td><td data-v="1.52">1.52</td><td>Compacted base layers</td></tr>
+</tbody></table></div>
+
+<h2 id="units">Unit conversions</h2>
+<div class="wrap"><table><thead><tr><th>From</th><th>To</th><th>Factor</th></tr></thead><tbody>
+<tr><td>1 yd³</td><td>ft³</td><td>27</td></tr>
+<tr><td>1 yd³</td><td>m³</td><td>0.7646</td></tr>
+<tr><td>1 m³</td><td>yd³</td><td>1.308</td></tr>
+<tr><td>1 m³</td><td>ft³</td><td>35.315</td></tr>
+<tr><td>1 in</td><td>ft</td><td>÷ 12</td></tr>
+<tr><td>1 mm</td><td>m</td><td>÷ 1,000</td></tr>
+</tbody></table></div>
+<p class="note" style="margin-top:14px">Planning estimates only, not structural design. Slab thickness, reinforcement and mix come from your plans, local requirements and supplier.</p>
+</main>
+<script>
+(function(){
+function val(c){var v=c.getAttribute('data-v');return v===null?c.textContent.trim().toLowerCase():parseFloat(v)}
+document.querySelectorAll('table.sortable').forEach(function(t){
+ t.querySelectorAll('th button').forEach(function(b,i){
+  b.addEventListener('click',function(){
+   var th=b.parentNode,dir=th.getAttribute('aria-sort')==='ascending'?'descending':'ascending';
+   t.querySelectorAll('th').forEach(function(x){x.removeAttribute('aria-sort')});th.setAttribute('aria-sort',dir);
+   var tb=t.tBodies[0],rs=[].slice.call(tb.rows);
+   rs.sort(function(a,c){var x=val(a.cells[i]),y=val(c.cells[i]);return(x>y?1:x<y?-1:0)*(dir==='ascending'?1:-1)});
+   rs.forEach(function(r){tb.appendChild(r)});
+  });
+ });
+});
+var q=document.getElementById('q'),u=document.getElementById('use'),rows=document.querySelectorAll('#slabs tbody tr'),n=document.getElementById('count');
+function f(){var s=q.value.toLowerCase(),k=0;rows.forEach(function(r){var ok=(!u.value||r.dataset.use===u.value)&&r.textContent.toLowerCase().indexOf(s)>-1;r.hidden=!ok;if(ok)k++});n.textContent=k+' of '+rows.length+' sizes shown'}
+q.addEventListener('input',f);u.addEventListener('change',f);f();
+})();
+</script>
+</body>
+</html>
